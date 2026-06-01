@@ -1,0 +1,106 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+html,body{
+    height: 100%;
+    width: 100%;
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+}
+/* Default Light Theme */
+:root {
+    --bg-color: #f3f4f6;
+    --container-bg: #ffffff;
+    --text-color: #1f2937;
+    --button-bg: #e5e7eb;
+    --button-text: #000000;
+    --accent-color: #f97316; /* Equal and Operators color */
+}
+
+/* Dark Theme Class */
+.dark-theme {
+    --bg-color: #111827;      /* Dark Navy/Black */
+    --container-bg: #1f2937;  /* Slightly lighter dark */
+    --text-color: #f9fafb;
+    --button-bg: #374151;
+    --button-text: #ffffff;
+}
+
+/* Base Styling */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background 0.3s ease; /* Smooth transition */
+    background-color: var(--container-bg);
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.button {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    border-radius: 10px;
+    transition: all 0.2s;
+}
+
+.button:hover {
+    filter: brightness(1.2); /* Hover par thora light hoga */
+}
+.button{
+    width: 60px;
+    padding: 20px;
+    margin: 0 3px;
+    border: 2px solid black;
+    border-radius: 9px;
+    cursor: pointer;
+}
+.row{
+    margin: 8px 0;
+}
+.row input{
+    margin: 0;
+    padding: 10px 5px;
+    font-size:21px;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+#theme-btn {
+    width: 150px;
+    padding: 10px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 50px; /* Rounded shape for switch look */
+    background: #e0e0e0;
+    color: #333;
+    font-weight: bold;
+    box-shadow: 5px 5px 10px #bebebe, -3px -3px 8px #ffffff;
+    transition: all 0.4s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Dark Mode mein button ki look */
+body.dark-mode #theme-btn {
+    background: #2d2d2d;
+    color: #00ff88; /* Neon Green text */
+    box-shadow: 0 0 8px #00ff88, inset 2px 2px 5px #000;
+    text-shadow: 0 0 5px #00ff88;
+}
+
+#theme-btn:active {
+    transform: scale(0.95); /* Click hone par thora dab jaye */
+}
+#theme-btn {
+    position: absolute; /* Ye button ko azad kar dega */
+    top: 20px;         /* Top se fasla */
+    right: 20px;       /* Right side se fasla */
+    z-index: 100;      /* Taake ye kisi cheez ke piche na chup jaye */
+
+}
