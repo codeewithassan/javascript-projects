@@ -1,0 +1,115 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: #548687;
+    text-align: center;
+    font-family: "Baloo Bhai 2", sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+    color: #b1403e;
+}
+button:hover{
+    cursor: pointer;
+}
+.container{
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.game{
+    height: 60vmin;
+    width: 60vmin;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5vmin;
+
+}
+.box{
+    height: 18vmin;
+    width: 18vmin;
+}
+.box{
+    border-radius: 1rem;
+    border: none;
+    box-shadow: 0 0 1rem rgba(0,0,0,0.3);
+    font-size: 8vmin;
+    background-color: #ffffc7;
+}
+.turn0{
+    color: #2d7a6f;
+}
+.turnx{
+    color: #b1403e;
+}
+#reset-btn{
+    padding: 1rem;
+    font-size: 1.25rem;
+    background-color: #191913;
+    color: #fff;
+    border-radius: 1rem;
+    border: none;
+}
+#reset-score{
+    color: #2d7a6f;
+    border: none;
+    font-weight: bold;
+    background: none;
+}
+#reset-score:hover{
+    cursor: pointer;
+}
+#new-btn{
+   padding: 1rem;
+    font-size: 1.25rem;
+    background-color: #191913;
+    color: #fff;
+    border-radius: 1rem;
+    border: none; 
+}
+#msg{
+    color: #ffffc7;
+    font-size: 5vmin;
+}
+.msg-container{
+    height: 100vmin;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+}
+.hide{
+    display: none;
+}
+.scoreboard-container {
+    margin: 10px auto;
+    max-width: 400px;
+    background-color: #ffffc7;
+    padding: 10px;
+    border-radius: 1rem;
+    box-shadow: 0 0 1rem rgba(0,0,0,0.2);
+    font-size: 24px;
+    color: #2d7a6f;
+}
+
+#turn-indicator {
+    font-weight: bold;
+    border-bottom: 2px solid #548687;
+}
+
+.scores {
+    display: flex;
+    justify-content: space-around;
+    font-size: 22px;
+    color: #b1403e;
+}
+
+.scores span {
+    font-weight: black;
+    font-size: 26px;
+}

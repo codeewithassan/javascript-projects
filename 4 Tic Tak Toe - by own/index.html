@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tak Toe</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@400..800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="msg-container hide">
+        <h1>Tic Tac Toe</h1>
+        <p id="msg">Winner</p>
+        <button id="new-btn">New Game</button>
+    </div>
+    <main>
+        <div class="scoreboard-container">
+            <p id="turn-indicator">Player X's Turn</p>            
+            <div class="scores">
+                <p>Player X: <span id="score-x">0</span></p>
+                <button id="reset-score">Resest Score</button>
+                <p>Player O: <span id="score-o">0</span></p>
+            </div>
+        </div>
+        <div class="container">
+            <div class="game"> </div>
+        </div>
+        <button id="reset-btn">Reset Game</button>
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>
