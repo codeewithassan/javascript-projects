@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Weather App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<div id="usageModal" class="usage-modal">
+    <div class="usage-modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>WeatherApp Usage Guide 🌤️</h2>
+        <hr>
+        <p>Welcome to WeatherApp! Here is how you can easily use this application:</p>
+        
+        <ul>
+            <li><strong>1. Automatic Dashboard:</strong> When the page loads, the table automatically populates with the current weather data for major cities of Pakistan.</li>
+            <li><strong>2. Custom Location Search:</strong> Enter the exact <strong>Latitude</strong> and <strong>Longitude</strong> of any place in the input fields on the top right, and click <strong>Search</strong> to fetch its specific weather.</li>
+            <li><strong>3. Dynamic Dropdown:</strong> Hover or click on "Get Your Country's weather" to quickly select pre-configured regions.</li>
+        </ul>
+        
+        <p style="margin-top: 15px; font-size: 0.9rem; color: #666;"><em>Note: The time shown in the dashboard reflects your local system's exact current time when the data was fetched.</em></p>
+    </div>
+</div>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Weather<span style="color: rgb(13 110 253);">App</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Get Your Country's weather
+                        </a>
+                        <ul class="dropdown-menu" id="dropdowns">
+                            <li><a class="dropdown-item" id="atd" data-lat="34.168751" data-lon="73.221497"
+                                    href="#">Abbottabad</a></li>
+                            <li><a class="dropdown-item" id="isb" data-lat="33.6989" data-lon="73.0369"
+                                    href="#">Islamabad</a></li>
+                            <li><a class="dropdown-item" id="khi" data-lat="24.8600" data-lon="67.0100"
+                                    href="#">Karachi</a></li>
+                            <li><a class="dropdown-item" id="lhe" data-lat="31.5497" data-lon="74.3436"
+                                    href="#">Lahore</a></li>
+                            <li><a class="dropdown-item" id="rwp" data-lat="33.6007" data-lon="73.0679"
+                                    href="#">Rawalpindi</a></li>
+                            <li><a class="dropdown-item" id="pew" data-lat="34.0144" data-lon="71.5675"
+                                    href="#">Peshawar</a></li>
+                            <li><a class="dropdown-item" id="mux" data-lat="30.1978" data-lon="71.4711"
+                                    href="#">Multan</a></li>
+                            <li><a class="dropdown-item" id="fjd" data-lat="31.4180" data-lon="73.0790"
+                                    href="#">Faisalabad</a></li>
+                            <li><a class="dropdown-item" id="qta" data-lat="30.1958" data-lon="67.0172"
+                                    href="#">Quetta</a></li>
+                            <li><a class="dropdown-item" id="skm" data-lat="32.5000" data-lon="74.5333"
+                                    href="#">Sialkot</a></li>
+                            <li><a class="dropdown-item" id="gjr" data-lat="32.1500" data-lon="74.1833"
+                                    href="#">Gujranwala</a></li>
+                            <li><a class="dropdown-item" id="hyd" data-lat="25.3792" data-lon="68.3683"
+                                    href="#">Hyderabad</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" id="pk" href="#">Pakistan</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " id="usageLink">Usage Guide</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" id="lat" type="search" placeholder="Enter latitude..."
+                        aria-label="Latitude" />
+                    <input class="form-control me-2" id="lon" type="search" placeholder="Enter longitude..."
+                        aria-label="Longitude" />
+                    <button class="btn btn-outline-success" id="submit" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <main>
+            <h2 id="main-heading" class="text-center py-4" style="color: rgb(13 110 253);">Weather of City</h2>
+            <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+                <div class="col">
+                    <div class="card mb-4 rounded-3 shadow-sm">
+                        <div class="card-header py-3">
+                            <h4 class="my-0 fw-normal">Temprature info</h4>
+                        </div>
+                        <div class="card-body">
+                            <h1 class="card-title pricing-card-title"><span id="temp"></span><small
+                                    class="text-body-secondary fw-light">°C</small></h1>
+                            <ul class="list-unstyled mt-3 mb-4">
+                                <li>Max-Temp is : <span id="max_temp">--</span></li>
+                                <li>Min-Temp is : <span id="min_temp">--</span></li>
+                                <li>Weather is : <span id="weather">--</span></li>
+                            </ul> <button type="button" class="w-100 btn btn-lg btn-outline-primary">Temprature</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card mb-4 rounded-3 shadow-sm">
+                        <div class="card-header py-3">
+                            <h4 class="my-0 fw-normal">Humidity Info</h4>
+                        </div>
+                        <div class="card-body">
+                            <h1 class="card-title pricing-card-title"><span id="humidity2"></span><small
+                                    class="text-body-secondary fw-light">%</small></h1>
+                            <ul class="list-unstyled mt-3 mb-4">
+                                <li>Humidity is : <span id="humidity">--</span></li>
+                                <li>Timestamp is : <span id="timestamp">--</span></li>
+                                <li>Cloud PTC is : <span id="cloud_pct">--</span></li>
+                            </ul> <button type="button" class="w-100 btn btn-lg btn-primary">Humidity</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card mb-4 rounded-3 shadow-sm border-primary">
+                        <div class="card-header py-3 text-bg-primary border-primary">
+                            <h4 class="my-0 fw-normal">Wind info</h4>
+
+                        </div>
+                        <div class="card-body">
+                            <h1 class="card-title pricing-card-title"><span id="wind_speed2"></span><small
+                                    class="text-body-secondary fw-light">km/hr</small></h1>
+                            <ul class="list-unstyled mt-3 mb-4">
+                                <li>Wind speed is : <span id="wind_speed">--</span></li>
+                                <li>Wind degree is : <span id="wind_degrees">--</span></li>
+                                <li>Feels like : <span id="feels_like">--</span></li>
+                            </ul> <button type="button" class="w-100 btn btn-lg btn-primary">Wind</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h2 class="display-6 text-center mb-4">Weather of other common places</h2>
+            <div class="table-responsive">
+                <table class="table text-center">
+    <thead>
+        <tr>
+            <th>City</th>
+            <th>Cloud Pct</th>
+            <th>Feels Like</th>
+            <th>Humidity</th>
+            <th>Max Temp</th>
+            <th>Min Temp</th>
+            <th>Temp</th>
+            <th>Timestamp</th>
+            <th>Weather</th>
+            <th>Wind Degrees</th>
+            <th>Wind Speed</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr id="row-atd" class="city-row" data-lat="34.168751" data-lon="73.221497">
+            <td>Abbottabad</td>
+            <td class="cloud_pct">-</td>
+            <td class="feels_like">-</td>
+            <td class="humidity">-</td>
+            <td class="max_temp">-</td>
+            <td class="min_temp">-</td>
+            <td class="temp">-</td>
+            <td class="timestamp">-</td>
+            <td class="weather">-</td>
+            <td class="wind_degrees">-</td>
+            <td class="wind_speed">-</td>
+        </tr>
+
+        <tr id="row-isb" class="city-row" data-lat="33.6989" data-lon="73.0369">
+            <td>Islamabad</td>
+            <td class="cloud_pct">-</td>
+            <td class="feels_like">-</td>
+            <td class="humidity">-</td>
+            <td class="max_temp">-</td>
+            <td class="min_temp">-</td>
+            <td class="temp">-</td>
+            <td class="timestamp">-</td>
+            <td class="weather">-</td>
+            <td class="wind_degrees">-</td>
+            <td class="wind_speed">-</td>
+        </tr>
+
+        <tr id="row-khi" class="city-row" data-lat="24.8600" data-lon="67.0100">
+            <td>Karachi</td>
+            <td class="cloud_pct">-</td>
+            <td class="feels_like">-</td>
+            <td class="humidity">-</td>
+            <td class="max_temp">-</td>
+            <td class="min_temp">-</td>
+            <td class="temp">-</td>
+            <td class="timestamp">-</td>
+            <td class="weather">-</td>
+            <td class="wind_degrees">-</td>
+            <td class="wind_speed">-</td>
+        </tr>
+
+        <tr id="row-lhe" class="city-row" data-lat="31.5497" data-lon="74.3436">
+            <td>Lahore</td>
+            <td class="cloud_pct">-</td>
+            <td class="feels_like">-</td>
+            <td class="humidity">-</td>
+            <td class="max_temp">-</td>
+            <td class="min_temp">-</td>
+            <td class="temp">-</td>
+            <td class="timestamp">-</td>
+            <td class="weather">-</td>
+            <td class="wind_degrees">-</td>
+            <td class="wind_speed">-</td>
+        </tr>
+
+        <tr id="row-rwp" class="city-row" data-lat="33.6007" data-lon="73.0679">
+            <td>Rawalpindi</td>
+            <td class="cloud_pct">-</td>
+            <td class="feels_like">-</td>
+            <td class="humidity">-</td>
+            <td class="max_temp">-</td>
+            <td class="min_temp">-</td>
+            <td class="temp">-</td>
+            <td class="timestamp">-</td>
+            <td class="weather">-</td>
+            <td class="wind_degrees">-</td>
+            <td class="wind_speed">-</td>
+        </tr>
+
+        <tr id="row-pew" class="city-row" data-lat="34.0144" data-lon="71.5675">
+            <td>Peshawar</td>
+            <td class="cloud_pct">-</td>
+            <td class="feels_like">-</td>
+            <td class="humidity">-</td>
+            <td class="max_temp">-</td>
+            <td class="min_temp">-</td>
+            <td class="temp">-</td>
+            <td class="timestamp">-</td>
+            <td class="weather">-</td>
+            <td class="wind_degrees">-</td>
+            <td class="wind_speed">-</td>
+        </tr>
+
+        <tr id="row-mux" class="city-row" data-lat="30.1978" data-lon="71.4711">
+            <td>Multan</td>
+            <td class="cloud_pct">-</td>
+            <td class="feels_like">-</td>
+            <td class="humidity">-</td>
+            <td class="max_temp">-</td>
+            <td class="min_temp">-</td>
+            <td class="temp">-</td>
+            <td class="timestamp">-</td>
+            <td class="weather">-</td>
+            <td class="wind_degrees">-</td>
+            <td class="wind_speed">-</td>
+        </tr>
+    </tbody>
+</table>
+            </div>
+        </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+    <script src="config.js"></script>
+    <script src="config.sample.js"></script>
+</body>
+
+</html>
