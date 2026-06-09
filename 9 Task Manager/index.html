@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Priority Todo App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app-container">
+        <h1>Task Manager</h1>
+
+        <div class="stats-container">
+            <div class="stat-card">
+                <span class="stat-count" id="total-tasks">0</span>
+                <span class="stat-label">Total</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-count" id="completed-tasks">0</span>
+                <span class="stat-label">Completed</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-count" id="pending-tasks">0</span>
+                <span class="stat-label">Pending</span>
+            </div>
+        </div>
+
+        <form id="task-form" class="task-form">
+            <input type="text" id="task-title" placeholder="Enter your task here..." required>
+
+            <select id="task-priority">
+                <option value="Low">Low Priority</option>
+                <option value="Medium" selected>Medium Priority</option>
+                <option value="High">High Priority</option>
+            </select>
+
+            <button type="submit" class="add-btn">Add Task</button>
+        </form>
+
+        <div class="filter-container">
+            <label for="status-filter">Filter Tasks:</label>
+            <select id="status-filter">
+                <option value="All">All Tasks</option>
+                <option value="Pending">Pending</option>
+                <option value="Completed">Completed</option>
+            </select>
+        </div>
+
+        <ul id="tasks-list" class="tasks-list"></ul>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
